@@ -1,24 +1,37 @@
 routes:
-  # Load the page named home at path / and apply template page
+  # Lets us put up a maintenance page
+  # Doesn't help with links other than the front page
+  # Will need something more robust when we have more traffic
+  # Probably can do this by using the following and ...
+  # ... adding a 302 redirect in the redirects.yaml file
+  # ... that redirects everything except / to /. eg.
+  #     302:
+  #       ^\/.+$: /
   # /:
   #   data: page.maintenance
   #   template: maintenance
 
-  # Load the page named home at / and apply template page
-  /:
-    data: page.home
-    template: page
+  # Load home as the index for the site
+  /:                 # when path / is requested
+    data: page.home  # Get data for the maintenance page
+    template: page   # Feed the data to the maintenance template
 
-  # Load all of the content tagged with blog at /blog/
-  /blog/:
-    controller: channel
-    filter: tag:blog
-    template: index
+   # Build a page at /blog/ listing all posts tagged with blog
+  /blog/:                 # When path /blog/ is requested
+    controller: channel   # Read the routing docs about channel
+    filter: tag:blog      # Restrict to content tagged with blog
+    template: index       # Pass the content to the index template
 
   # Load all of the content tagged with faq at /faqs/
   /faqs/:
     controller: channel
     filter: tag:faq
+    template: tag
+
+  # Load all of the content tagged with legal at /legal/
+  /legal/:
+    controller: channel
+    filter: tag:legal
     template: tag
 
   # Load all of the content tagged with solution at /solutions
@@ -45,6 +58,12 @@ collections:
     permalink: /faq/{slug}/
     template: post
     filter: tag:faq
+
+  # Put things tagged with legal at /legal/...
+  /legal/:
+    permalink: /legal/{slug}/
+    template: post
+    filter: tag:legal
 
   # Put things tagged with solution at /solutions/...
   /solution/:
