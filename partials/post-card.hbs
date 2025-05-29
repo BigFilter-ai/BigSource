@@ -36,10 +36,14 @@
                     {{/has}}
                 {{/unless}}<!--
              -->{{#if @custom.show_author}}
-                    <span class="gh-card-author">By {{#foreach authors}}{{#if @first}}{{name}}{{else}}, {{name}}{{/if}}{{/foreach}}</span>
+                    {{#has tag="blog"}}
+                        <span class="gh-card-author">By {{#foreach authors}}{{#if @first}}{{name}}{{else}}, {{name}}{{/if}}{{/foreach}}</span>
+                    {{/has}}
                 {{/if}}
                 {{#if @custom.show_publish_date}}
-                    <time class="gh-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                    {{#has tag="blog"}}
+                        <time class="gh-card-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                    {{/has}}
                 {{/if}}<!--
          --></footer>
         </div>

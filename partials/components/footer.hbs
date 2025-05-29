@@ -2,18 +2,18 @@
     <div class="gh-footer-inner gh-inner">
 
         <div class="gh-footer-bar">
-            <span class="gh-footer-logo is-title">
+            {{!-- <span class="gh-footer-logo is-title">
                 {{#if @site.logo}}
                     <img src="{{@site.logo}}" alt="{{@site.title}}">
                 {{else}}
                     {{@site.title}}
                 {{/if}}
-            </span>
+            </span> --}}
             <nav class="gh-footer-menu">
                 {{navigation type="secondary"}}
             </nav>
             <div class="gh-footer-copyright">
-                Powered by <a href="https://ghost.org/" target="_blank" rel="noopener">Ghost</a>
+                &copy; {{date published_at format="YYYY"}} BigFilter Inc. PBC.
             </div>
         </div>
 

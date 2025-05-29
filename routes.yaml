@@ -1,0 +1,57 @@
+routes:
+  # Load the page named home at path / and apply template page
+  # /:
+  #   data: page.maintenance
+  #   template: maintenance
+
+  # Load the page named home at / and apply template page
+  /:
+    data: page.home
+    template: page
+
+  # Load all of the content tagged with blog at /blog/
+  /blog/:
+    controller: channel
+    filter: tag:blog
+    template: index
+
+  # Load all of the content tagged with faq at /faqs/
+  /faqs/:
+    controller: channel
+    filter: tag:faq
+    template: tag
+
+  # Load all of the content tagged with solution at /solutions
+  /solutions/:
+    controller: channel
+    filter: tag:solution
+    template: tag
+    
+collections:
+  # Default route - strip out things tagged wifh blog, faq, etc.
+  /:
+    permalink: /{slug}/
+    template: index
+    filter: tag:-[blog,faq,solution]
+
+  # Put things tagged with blog at /post/...
+  /post/:
+    permalink: /post/{year}/{month}/{day}/{slug}/
+    template: post
+    filter: tag:blog
+
+  # Put things tagged with faq at /faq/...
+  /faq/:
+    permalink: /faq/{slug}/
+    template: post
+    filter: tag:faq
+
+  # Put things tagged with solution at /solutions/...
+  /solution/:
+    permalink: /solution/{slug}/
+    template: post
+    filter: tag:solution
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/
